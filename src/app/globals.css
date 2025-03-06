@@ -1,6 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Playwrite+IT+Moderna:wght@100..400&family=VT323&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.vt323-regular {
+  font-family: "VT323", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.anton-regular {
+  font-family: "Anton", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.playwrite-it-moderna {
+  font-family: "Playwrite IT Moderna", serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
 
 :root {
   --background: #ffffff;
