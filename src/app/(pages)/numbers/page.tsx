@@ -1,5 +1,15 @@
 "use client";
 
+const colorClasses: Record<string, string> = {
+  red: "bg-red-300",
+  blue: "bg-blue-300",
+  green: "bg-green-300",
+  yellow: "bg-yellow-300",
+  gray: "bg-gray-300",
+  pink: "bg-pink-300",
+  purple: "bg-purple-300",
+};
+
 import { useSearchParams, useRouter } from "next/navigation";
 import { Playwrite_BR } from "next/font/google";
 import data from "@/app/data/cards.json"; // Importa os dados do JSON
@@ -33,7 +43,9 @@ export default function NumbersPage() {
           {filteredItems.map((item, i) => (
             <button
               key={i + 1}
-              className={`w-24 h-24 rounded-2xl text-white font-bold text-lg flex items-center justify-center border border-white bg-${color}-300`}
+              className={`w-24 h-24 rounded-2xl text-white font-bold text-lg flex items-center justify-center border border-white ${
+                colorClasses[color] || "bg-gray-300"
+              }`}
               onClick={() => handleClick(i + 1)}
             >
               {i + 1}
