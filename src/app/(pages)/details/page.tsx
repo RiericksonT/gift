@@ -3,7 +3,8 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { Playwrite_BR } from "next/font/google";
-import data from "../../data/cards.json"; // Certifique-se de que esse JSON é um array válido
+import data from "../../data/cards.json";
+import { Suspense } from "react";
 
 const playwrite = Playwrite_BR({
   weight: ["400"],
@@ -26,7 +27,7 @@ function extrairIdDoYoutube(url: string): string {
   return match ? match[1] : "";
 }
 
-export default function DetailsPage() {
+function DetailsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const numero = Number(searchParams.get("number"));
@@ -100,5 +101,13 @@ export default function DetailsPage() {
         </button>
       </div>
     </main>
+  );
+}
+
+export default function DetailsPage() {
+  return (
+    <Suspense fallback={<div>Carregando...</div>}>
+      <DetailsContent />
+    </Suspense>
   );
 }

@@ -1,5 +1,16 @@
 "use client";
 
+import { useSearchParams, useRouter } from "next/navigation";
+import { Playwrite_BR } from "next/font/google";
+import { Suspense } from "react";
+import data from "@/app/data/cards.json";
+
+const playwrite = Playwrite_BR({
+  weight: ["400"],
+  variable: "--font-playwrite",
+});
+
+// Mapeamento das classes de cor
 const colorClasses: Record<string, string> = {
   red: "bg-red-300",
   blue: "bg-blue-300",
@@ -10,16 +21,15 @@ const colorClasses: Record<string, string> = {
   purple: "bg-purple-300",
 };
 
-import { useSearchParams, useRouter } from "next/navigation";
-import { Playwrite_BR } from "next/font/google";
-import data from "@/app/data/cards.json"; // Importa os dados do JSON
-
-const playwrite = Playwrite_BR({
-  weight: ["400"],
-  variable: "--font-playwrite",
-});
-
 export default function NumbersPage() {
+  return (
+    <Suspense fallback={<div>Carregando...</div>}>
+      <NumbersPageContent />
+    </Suspense>
+  );
+}
+
+function NumbersPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const color = searchParams.get("color") || "gray";
